@@ -1,13 +1,9 @@
 package org.influxdb;
 
+import org.influxdb.dto.*;
+
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
-import org.influxdb.dto.BatchPoints;
-import org.influxdb.dto.Point;
-import org.influxdb.dto.Pong;
-import org.influxdb.dto.Query;
-import org.influxdb.dto.QueryResult;
 
 /**
  * Interface with all available methods to access a InfluxDB database.
@@ -92,7 +88,7 @@ public interface InfluxDB {
 	/**
 	 * Disable Batching.
 	 */
-	public void disableBatch();
+	public InfluxDB disableBatch();
 
 	/**
 	 * Ping this influxDB-
@@ -171,4 +167,10 @@ public interface InfluxDB {
 	 */
 	public List<String> describeDatabases();
 
+	/**
+	 * sets the default retention Policy used for all points.
+	 * @param retentionPolicy
+	 * @return
+	 */
+	public InfluxDB withDefaultRetentionPolicy(String retentionPolicy);
 }
